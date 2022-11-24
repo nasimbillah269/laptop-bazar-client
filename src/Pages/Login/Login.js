@@ -1,18 +1,31 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const Login = () => {
-    const { signIn } = useContext(AuthContext);
+    const googleProvider = new GoogleAuthProvider();
+    const { signIn, googleSignIn } = useContext(AuthContext);
 
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+
 
         signIn(email, password)
+            .then(reslut => {
+                const user = reslut.user;
+                console.log(user);
+            })
+            .catch(error => {
+                console.error('error', error)
+            })
+    }
+
+    const handleGoogleSignIn = () => {
+        googleSignIn(googleProvider)
             .then(reslut => {
                 const user = reslut.user;
                 console.log(user);
@@ -45,10 +58,11 @@ const Login = () => {
                         </div>
                         <p>Laptop bazar new account ? <Link className='text-secondary' to="/signup">Sign Up</Link></p>
                         <div className="divider">OR</div>
-                        <div className="form-control ">
-                            <button className="btn btn-primary" >Google</button>
-                        </div>
                     </form>
+                    <div className='mx-auto mt-0 mb-4' >
+                        <button onClick={handleGoogleSignIn} className="btn btn-primary px-28" >Google</button>
+                    </div>
+
 
                 </div>
             </div>

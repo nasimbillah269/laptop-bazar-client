@@ -25,7 +25,7 @@ const SignUp = () => {
             })
     }
 
-    const handleGoogleSignIn = () => {
+    const handleGoogleSignUp = () => {
         googleSignIn(googleProvider)
             .then(result => {
                 const user = result.user;
@@ -71,10 +71,10 @@ const SignUp = () => {
                         <div className="form-control mt-6">
                             <input className="btn btn-primary" type="submit" value="Login" />
                         </div>
-                        <p className='mb-0'>Alrady have an account ? <Link className='text-secondary' to="/login">Sign Up</Link></p>
+                        <p className='mb-0'>Alrady have an account ? <Link className='text-secondary' to="/login">Login</Link></p>
                         <div className="divider">OR</div>
                         <div className="form-control ">
-                            <button onClick={handleGoogleSignIn} className="btn btn-primary" >Google</button>
+                            <button onClick={handleGoogleSignUp} className="btn btn-primary" >Google</button>
                         </div>
                     </form>
                 </div>
