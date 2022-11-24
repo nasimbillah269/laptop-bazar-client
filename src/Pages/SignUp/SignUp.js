@@ -5,7 +5,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
     const googleProvider = new GoogleAuthProvider();
-    const { createUser, googleSignIn } = useContext(AuthContext);
+    const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
     const handleSubmit = event => {
         event.preventDefault()
         const form = event.target;
@@ -19,6 +19,17 @@ const SignUp = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+                const userInfo = {
+                    displayName: name
+                }
+                updateUser(userInfo)
+                    .then(() => {
+                        console.log('user update');
+
+                    })
+                    .catch(error => {
+                        console.error('error', error)
+                    })
             })
             .catch(error => {
                 console.error('error', error)
