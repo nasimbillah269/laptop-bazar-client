@@ -1,5 +1,6 @@
 import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 
 const MyProduct = () => {
@@ -7,8 +8,8 @@ const MyProduct = () => {
 
     const url = `http://localhost:5000/addProducts?email=${user?.email}`;
 
-    const { data: addProducts = [] } = useQuery({
-        queryKey: ['addProducts', user?.email],
+    const { data: addProducts = [], refetch } = useQuery({
+        queryKey: ['addProducts', user?.email,],
         queryFn: async () => {
             const res = await fetch(url, {
                 // headers: {
@@ -19,6 +20,21 @@ const MyProduct = () => {
             return data;
         }
     })
+
+    const handleDeleteProduct = id => {
+        fetch(`http://localhost:5000/addProducts/${id}`, {
+            method: 'DELETE'
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.deletedCount > 0) {
+                    refetch();
+                    toast.success(' deleted successfull')
+                }
+
+
+            })
+    }
     return (
         <div>
             <h2>My Product</h2>
@@ -49,7 +65,7 @@ const MyProduct = () => {
                                 </td>
                                 <td>{addProduct.price}</td>
                                 <td>
-                                    <button className='btn btn-primary btn-sm'>Delete</button>
+                                    <button onClick={() => handleDeleteProduct(addProduct._id)} className='btn btn-primary btn-sm'>Delete</button>
                                 </td>
                                 <td>
                                     <button className='btn btn-info btn-sm'>advertise</button>
