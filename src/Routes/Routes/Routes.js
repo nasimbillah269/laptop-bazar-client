@@ -13,6 +13,7 @@ import Home from "../../Pages/Home/Home/Home";
 import Products from "../../Pages/Home/Products/Products";
 import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
+import AddminRoute from "../AddminRoute/AddminRoute";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
 
 const router = createBrowserRouter([
@@ -45,7 +46,7 @@ const router = createBrowserRouter([
     },
     {
         path: '/dashboard',
-        element: <DashboardLayout></DashboardLayout>,
+        element: <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
         children: [
             {
                 path: '/dashboard',
@@ -61,15 +62,15 @@ const router = createBrowserRouter([
             },
             {
                 path: '/dashboard/allusers',
-                element: <AllUsers></AllUsers>
+                element: <AddminRoute><AllUsers></AllUsers></AddminRoute>
             },
             {
                 path: '/dashboard/allsellers',
-                element: <AllSellers></AllSellers>
+                element: <AddminRoute><AllSellers></AllSellers></AddminRoute>
             },
             {
                 path: '/dashboard/allbuyers',
-                element: <Allbuyers></Allbuyers>
+                element: <AddminRoute> <Allbuyers></Allbuyers></AddminRoute>
             }
         ]
     }
