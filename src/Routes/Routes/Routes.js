@@ -8,6 +8,7 @@ import AllSellers from "../../Pages/DashBoard/AllSellers/AllSellers";
 import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/DashBoard/MyProduct/MyProduct";
+import ErrorPage from "../../Pages/ErrorPage/ErrorPage";
 // import Category from "../../Pages/Home/Categories/Category";
 import Home from "../../Pages/Home/Home/Home";
 import Products from "../../Pages/Home/Products/Products";
@@ -73,6 +74,11 @@ const router = createBrowserRouter([
                 element: <AddminRoute> <Allbuyers></Allbuyers></AddminRoute>
             }
         ]
+    },
+    {
+        path: '*',
+        element: <ErrorPage></ErrorPage>
     }
+
 ])
 export default router;
