@@ -2,13 +2,13 @@ import { useQuery } from '@tanstack/react-query';
 import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 
-const MyOrders = () => {
+const MyProduct = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/bookings?email=${user?.email}`;
+    const url = `http://localhost:5000/addProducts?email=${user?.email}`;
 
-    const { data: bookings = [] } = useQuery({
-        queryKey: ['bookings', user?.email],
+    const { data: addProducts = [] } = useQuery({
+        queryKey: ['addProducts', user?.email],
         queryFn: async () => {
             const res = await fetch(url, {
                 // headers: {
@@ -21,7 +21,7 @@ const MyOrders = () => {
     })
     return (
         <div>
-            <h2>My Orders</h2>
+            <h2>My Product</h2>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -30,38 +30,42 @@ const MyOrders = () => {
                             <th>Name</th>
                             <th>Image</th>
                             <th>Price</th>
-                            <th>Payment</th>
+                            <th></th>
+                            <th>advertise</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            bookings.map((booking, i) => <tr key={booking._id}>
+                            addProducts.map((addProduct, i) => <tr key={addProduct._id}>
                                 <th>{i + 1}</th>
-                                <td>{booking.productName}</td>
+                                <td>{addProduct.productName}</td>
                                 <td>
                                     <div className="avatar">
                                         <div className="w-24 rounded">
-                                            <img src={booking.image} alt='' />
+                                            <img src={addProduct.image} alt='' />
                                         </div>
                                     </div>
                                     { }
                                 </td>
-                                <td>{booking.resalePrice}</td>
+                                <td>{addProduct.price}</td>
                                 <td>
-                                    <button className='btn btn-primary btn-sm'>pay</button>
+                                    <button className='btn btn-primary btn-sm'>Delete</button>
+                                </td>
+                                <td>
+                                    <button className='btn btn-info btn-sm'>advertise</button>
                                 </td>
 
                                 {/* <td>
-                                    {
-                                        booking.price && !booking.paid && <Link
-                                            to={`/dashboard/payment/${booking._id}`}>
-                                            <button className='btn btn-primary btn-sm'>pay</button>
-                                        </Link>
-                                    }
-                                    {
-                                        booking.price && booking.paid && <span className='text-primary '>paid</span>
-                                    }
-                                </td> */}
+                                {
+                                    booking.price && !booking.paid && <Link
+                                        to={`/dashboard/payment/${booking._id}`}>
+                                        <button className='btn btn-primary btn-sm'>pay</button>
+                                    </Link>
+                                }
+                                {
+                                    booking.price && booking.paid && <span className='text-primary '>paid</span>
+                                }
+                            </td> */}
                             </tr>)
                         }
 
@@ -72,4 +76,4 @@ const MyOrders = () => {
     );
 };
 
-export default MyOrders;
+export default MyProduct;

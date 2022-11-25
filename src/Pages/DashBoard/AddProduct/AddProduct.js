@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../../Context/AuthProvider';
 
 const AddProduct = () => {
+    const { user } = useContext(AuthContext);
+    const navigate = useNavigate()
     const handleSubmit = event => {
         event.preventDefault();
         const form = event.target;
@@ -13,6 +18,7 @@ const AddProduct = () => {
         const laocation = form.laocation.value;
         const purchase = form.purchase.value;
         const description = form.description.value;
+        const email = form.email.value;
 
 
         const addProduct = {
@@ -23,7 +29,8 @@ const AddProduct = () => {
             category,
             laocation,
             purchase,
-            description
+            description,
+            email
         }
         console.log(productName, image, price, condition, phone, category, laocation, purchase, description);
         fetch('http://localhost:5000/addProducts', {
@@ -37,8 +44,10 @@ const AddProduct = () => {
             .then(data => {
                 console.log(data);
                 if (data.acknowledged) {
-                    alert('addProudct confirmed')
+                    toast.success('Successfully Add Products ');
                     form.reset();
+                    navigate('/dashboard/myproduct')
+
                 }
             })
     }
@@ -51,6 +60,12 @@ const AddProduct = () => {
                         <span className="label-text">Product Name</span>
                     </label>
                     <input type="text" name="productName" className="input input-bordered w-full max-w-xs" required />
+                </div>
+                <div className="form-control w-full max-w-xs">
+                    <label className="label">
+                        <span className="label-text">Your Email</span>
+                    </label>
+                    <input type="email" name="email" defaultValue={user?.email} disabled className="input input-bordered w-full max-w-xs" required />
                 </div>
                 <div className="form-control w-full max-w-xs">
                     <label className="label">
