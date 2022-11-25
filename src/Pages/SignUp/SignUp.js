@@ -1,9 +1,10 @@
 import { GoogleAuthProvider } from 'firebase/auth';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
 const SignUp = () => {
+    const [userCreateEmail, setUserCreateEmail] = useState('');
     const googleProvider = new GoogleAuthProvider();
     const { createUser, googleSignIn, updateUser } = useContext(AuthContext);
     const handleSubmit = event => {
@@ -25,6 +26,7 @@ const SignUp = () => {
                 updateUser(userInfo)
                     .then(() => {
                         console.log('user update');
+                        saveUser(user?.displayName, user?.email, option)
 
                     })
                     .catch(error => {
@@ -44,6 +46,25 @@ const SignUp = () => {
             })
             .catch(error => {
                 console.error('error', error)
+            })
+    }
+
+    const saveUser = (name, email, option) => {
+        const user = { name, email, option }
+        fetch('http://localhost:5000/users', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                console.log('save user', data);
+                setUserCreateEmail(data.email)
+                // getUserToken(email)
+
+
             })
     }
     return (
