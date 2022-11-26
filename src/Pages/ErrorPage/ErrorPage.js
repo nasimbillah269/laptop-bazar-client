@@ -1,11 +1,11 @@
 import React from 'react';
+import error from '../../assets/image/error.jpg'
 
 const ErrorPage = () => {
     return (
         <div className='text-center mt-12'>
-            <h2 className='text-xl'>Ops!</h2>
-            <p>404</p>
-            <p>Not found page</p>
+            <img className='w-80 h-80 rounded mx-auto' src={error} alt="" />
+            <p className='text-3xl font-bold'>Data Not Found !</p>
         </div>
     );
 };
