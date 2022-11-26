@@ -27,9 +27,27 @@ const AllSellers = () => {
 
             })
     }
+
+    const handleVarifyed = id => {
+        fetch(`http://localhost:5000/users/seller/${id}`, {
+            method: 'PUT',
+            // headers: {
+            //     authorization: `bearer ${localStorage.getItem('accessToken')}`
+            // }
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    toast.success('Verifyed successfully')
+                    refetch()
+                }
+
+            })
+
+    }
     return (
         <div>
-            <h3>All Sellers good</h3>
+            <h3 className='text-xl font-bold text-center'>All Sellers </h3>
             <div className="overflow-x-auto">
                 <table className="table w-full">
                     <thead>
@@ -39,6 +57,7 @@ const AllSellers = () => {
                             <th>Email</th>
                             <th>option</th>
                             <th></th>
+                            <th>verified</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,7 +67,19 @@ const AllSellers = () => {
                                 <td>{user.name}</td>
                                 <td>{user.email}</td>
                                 <td>{user.option}</td>
-                                <td><button onClick={() => handleDeleteSeller(user._id)} className='btn btn-xs btn-danger'>Delete</button></td>
+                                <td><button onClick={() => handleDeleteSeller(user._id)} className='btn btn-xs btn-error text-white'>Delete</button></td>
+                                <td>
+                                    {
+                                        user?.verify === 'verified' ?
+                                            <div className="form-control">
+                                                <label className=" label">
+                                                    <input type="checkbox" checked className="checkbox checkbox-success" />
+                                                </label>
+                                            </div>
+                                            :
+                                            <button onClick={() => handleVarifyed(user._id)} className='btn btn-xs btn-primary'>Verify</button>
+                                    }
+                                </td>
                             </tr>)
                         }
                     </tbody>

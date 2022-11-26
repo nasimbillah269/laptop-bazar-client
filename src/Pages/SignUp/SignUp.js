@@ -1,5 +1,6 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
@@ -27,6 +28,8 @@ const SignUp = () => {
                     .then(() => {
                         console.log('user update');
                         saveUser(user?.displayName, user?.email, option)
+                        toast.success('Successfully Create ');
+                        form.reset();
 
                     })
                     .catch(error => {
@@ -101,7 +104,7 @@ const SignUp = () => {
                             </select>
                         </div>
                         <div className="form-control mt-6">
-                            <input className="btn btn-primary" type="submit" value="Login" />
+                            <input className="btn btn-primary" type="submit" value="Sign Up" />
                         </div>
                         <p className='mb-0'>Alrady have an account ? <Link className='text-secondary' to="/login">Login</Link></p>
                         <div className="divider">OR</div>
