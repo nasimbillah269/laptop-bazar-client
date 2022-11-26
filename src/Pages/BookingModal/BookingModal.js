@@ -70,7 +70,7 @@ const BookingModal = ({ product, setProduct }) => {
                         <input name="phone" type="text" placeholder="Your Phone" className="input w-full input-bordered" />
                         <input name="location" type="text" placeholder="Your location" className="input w-full input-bordered" />
                         <br />
-                        <input type="submit" className='btn btn-accent w-full ' value="Submit" />
+                        <input type="submit" className='btn bg-neutral text-neutral-content w-full ' value="Submit" />
                     </form>
                 </div>
             </div>

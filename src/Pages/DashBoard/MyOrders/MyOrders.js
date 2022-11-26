@@ -22,8 +22,7 @@ const MyOrders = () => {
     })
     return (
         <div>
-            <h2>My Orders</h2>
-            <div className="overflow-x-auto">
+            <div className="overflow-x-auto ">
                 <table className="table w-full">
                     <thead>
                         <tr>
@@ -56,7 +55,7 @@ const MyOrders = () => {
                                     {
                                         booking.resalePrice && !booking.paid && <Link
                                             to={`/dashboard/payment/${booking._id}`}>
-                                            <button className='btn btn-primary btn-sm'>pay</button>
+                                            <button className='btn btn-primary mt-2 btn-sm'>pay</button>
                                         </Link>
                                     }
                                     {

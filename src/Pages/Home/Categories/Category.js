@@ -7,7 +7,7 @@ const Category = ({ category }) => {
     return (
         <div >
             <Link to={`/category/${categoryId}`}>
-                <p className='text-1xl font-semibold' >{category_name}</p>
+                <p className='text-1xl font-semibold bg-neutral text-neutral-content w-3/12 mx-auto py-4 my-12' >{category_name}</p>
             </Link>
         </div>
     );
