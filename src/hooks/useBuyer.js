@@ -5,12 +5,12 @@ const useBuyer = email => {
     const [isBuyerLoading, setIsBuyerLoading] = useState(true);
     useEffect(() => {
         if (email) {
-            fetch(`http://localhost:5000/users/option/${email}`)
+            fetch(`http://localhost:5000/users/buyer/${email}`)
                 .then(res => res.json())
                 .then(data => {
 
                     console.log(data);
-                    setIsBuyer(data.isOption)
+                    setIsBuyer(data.isBuyer)
                     setIsBuyerLoading(false)
                 })
         }

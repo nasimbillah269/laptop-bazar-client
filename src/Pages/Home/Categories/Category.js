@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, } from 'react-router-dom';
 const Category = ({ category }) => {
-    const { category_name, categoryId } = category;
+    const { category_name, categoryId, } = category;
 
     return (
         <div >

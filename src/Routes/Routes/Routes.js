@@ -6,6 +6,7 @@ import AddProduct from "../../Pages/DashBoard/AddProduct/AddProduct";
 import Allbuyers from "../../Pages/DashBoard/Allbuyers/Allbuyers";
 import AllSellers from "../../Pages/DashBoard/AllSellers/AllSellers";
 import AllUsers from "../../Pages/DashBoard/AllUsers/AllUsers";
+import DashBoard from "../../Pages/DashBoard/DashBoard";
 import MyOrders from "../../Pages/DashBoard/MyOrders/MyOrders";
 import MyProduct from "../../Pages/DashBoard/MyProduct/MyProduct";
 import Payment from "../../Pages/DashBoard/Payment/Payment";
@@ -17,6 +18,7 @@ import Login from "../../Pages/Login/Login";
 import SignUp from "../../Pages/SignUp/SignUp";
 import AddminRoute from "../AddminRoute/AddminRoute";
 import PrivetRoute from "../PrivetRoute/PrivetRoute";
+import SellerRoute from "../SellerRoute/SellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -51,16 +53,20 @@ const router = createBrowserRouter([
         element: <PrivetRoute><DashboardLayout></DashboardLayout></PrivetRoute>,
         children: [
             {
-                path: '/dashboard/',
+                path: '/dashboard',
+                element: <DashBoard></DashBoard>
+            },
+            {
+                path: '/dashboard/myorders',
                 element: <MyOrders></MyOrders>
             },
             {
                 path: '/dashboard/addproduct',
-                element: <AddProduct></AddProduct>
+                element: <SellerRoute><AddProduct></AddProduct></SellerRoute>
             },
             {
                 path: '/dashboard/myproduct',
-                element: <MyProduct></MyProduct>
+                element: <SellerRoute><MyProduct></MyProduct></SellerRoute>
             },
             {
                 path: '/dashboard/allusers',
