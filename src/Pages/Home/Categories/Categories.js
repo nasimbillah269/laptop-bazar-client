@@ -5,7 +5,7 @@ import Category from './Category';
 const Categories = () => {
     const { data: categories = [], } = useQuery({
         queryKey: ['categories'],
-        queryFn: () => fetch('http://localhost:5000/categories')
+        queryFn: () => fetch('https://laptop-bazar-server-theta.vercel.app/categories')
             .then(res => res.json())
     });
     return (

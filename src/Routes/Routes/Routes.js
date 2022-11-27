@@ -44,7 +44,7 @@ const router = createBrowserRouter([
             {
                 path: '/category/:id',
                 element: <PrivetRoute><Products></Products></PrivetRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/products/${params.id}`)
+                loader: ({ params }) => fetch(`https://laptop-bazar-server-theta.vercel.app/products/${params.id}`)
             }
         ]
     },
@@ -83,7 +83,7 @@ const router = createBrowserRouter([
             {
                 path: '/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({ params }) => fetch(`http://localhost:5000/bookings/${params.id}`)
+                loader: ({ params }) => fetch(`https://laptop-bazar-server-theta.vercel.app/bookings/${params.id}`)
             },
         ]
     },

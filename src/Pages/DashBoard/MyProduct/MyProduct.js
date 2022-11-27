@@ -6,7 +6,7 @@ import { AuthContext } from '../../../Context/AuthProvider';
 const MyProduct = () => {
     const { user } = useContext(AuthContext);
 
-    const url = `http://localhost:5000/addProducts?email=${user?.email}`;
+    const url = `https://laptop-bazar-server-theta.vercel.app/addProducts?email=${user?.email}`;
 
     const { data: addProducts = [], refetch } = useQuery({
         queryKey: ['addProducts', user?.email,],
@@ -22,7 +22,7 @@ const MyProduct = () => {
     })
 
     const handleDeleteProduct = id => {
-        fetch(`http://localhost:5000/addProducts/${id}`, {
+        fetch(`https://laptop-bazar-server-theta.vercel.app/addProducts/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())

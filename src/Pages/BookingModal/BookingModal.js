@@ -35,7 +35,7 @@ const BookingModal = ({ product, setProduct }) => {
 
         }
 
-        fetch('http://localhost:5000/bookings', {
+        fetch('https://laptop-bazar-server-theta.vercel.app/bookings', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

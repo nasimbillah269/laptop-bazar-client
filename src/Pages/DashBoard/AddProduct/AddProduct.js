@@ -33,7 +33,7 @@ const AddProduct = () => {
             email
         }
         console.log(productName, image, price, condition, phone, category, laocation, purchase, description);
-        fetch('http://localhost:5000/addProducts', {
+        fetch('https://laptop-bazar-server-theta.vercel.app/addProducts', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'

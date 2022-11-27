@@ -6,13 +6,13 @@ const Allbuyers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/user');
+            const res = await fetch('https://laptop-bazar-server-theta.vercel.app/users/user');
             const data = await res.json();
             return data;
         }
     })
     const handleDeleteBuyer = id => {
-        fetch(`http://localhost:5000/users/${id}`, {
+        fetch(`https://laptop-bazar-server-theta.vercel.app/users/${id}`, {
             method: 'DELETE'
         })
             .then(res => res.json())
