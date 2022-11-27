@@ -1,5 +1,6 @@
 import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
+import toast from 'react-hot-toast';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 
@@ -24,9 +25,11 @@ const Login = () => {
                 const user = reslut.user;
                 console.log(user);
                 navigate(from, { replace: true });
+                toast.success('Successfully Login');
             })
             .catch(error => {
                 console.error('error', error)
+                toast.error(error.message);
             })
     }
 
@@ -39,6 +42,7 @@ const Login = () => {
             })
             .catch(error => {
                 console.error('error', error)
+                toast.error(error.message);
             })
     }
     return (
