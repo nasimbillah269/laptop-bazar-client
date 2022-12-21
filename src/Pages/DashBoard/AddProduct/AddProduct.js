@@ -53,7 +53,7 @@ const AddProduct = () => {
     }
     return (
         <div className='w-full ml-12 '>
-            <h3 className='text-3xl'>Add Product</h3>
+            <h3 className='text-xl font-bold'>Add Product</h3>
             <form onSubmit={handleSubmit} className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2'>
                 <div className="form-control w-full max-w-xs">
                     <label className="label">
